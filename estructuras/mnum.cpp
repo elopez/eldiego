@@ -31,7 +31,11 @@ Por ejemplo, si n=7, y=2, o sea que quiero dividir por y,
 y^-1 = 4 porque y*(y^-1) = 8 = 1 mod 7.
 */
 
-//ejemplo de primo y mod=1e9+9 con inverso multiplicativo INV
+//ejemplos de primo y mod=1e9+9 con inverso multiplicativo INV. x/PRIME = x*INV.
 #define MOD 1000000009LL
 #define PRIME 1009LL
 #define INV 598612493LL
+
+#define MOD 100000000003LL
+#define PRIME 1009LL
+#define INV 53815659070LL
