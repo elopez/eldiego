@@ -1,6 +1,6 @@
 //lindos valores para hash
-#define MOD 1000000000000000009
-#define PRIME 1009
+#define MOD 1000000000000000009LL
+#define PRIME 1009LL
 
 ll mul(ll a, ll b, ll m) { //hace (a*b)%m
 	ll q = (ll)((long double)a*b/m);
@@ -30,3 +30,8 @@ El inverso multiplicativo de y módulo n es y^-1 tal que y*(y^-1) = 1 mod n.
 Por ejemplo, si n=7, y=2, o sea que quiero dividir por y,
 y^-1 = 4 porque y*(y^-1) = 8 = 1 mod 7.
 */
+
+//ejemplo de primo y mod=1e9+9 con inverso multiplicativo INV
+#define MOD 1000000009LL
+#define PRIME 1009LL
+#define INV 598612493LL
