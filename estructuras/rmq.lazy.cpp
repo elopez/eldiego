@@ -55,4 +55,18 @@ struct RMQ{
 		t[n]=operacion(t[2*n], t[2*n+1]);//por esto es el push de arriba
 	}
 	void alterar(Alt val, int i, int j){alterar(val,i,j,1,0,sz);}
+	
+	//setea de a un elemento. Esto lo "hace" dinámico.
+	void set(int p, tipo val){//O(lgn)
+		if(p<0) return; //OJO chequear que p no sea muy grande
+		this->get(p,p+1); //para que acomode los dirty del camino de la raíz a p
+		for(p+=sz; p>0 && t[p]!=val;){
+			t[p]=val;
+			int old = p;
+			p/=2;
+			int vecino = p*2 == old ? p*2+1 : p*2;
+			push(vecino,0,0);
+			val=operacion(t[p*2], t[p*2+1]);
+		}
+	}
 };
