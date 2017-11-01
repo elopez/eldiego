@@ -14,7 +14,7 @@ struct trie{
 	//link lleva al sufijo mas largo, nxthoja lleva al mas largo pero que es hoja
 	trie *padre, *link, *nxthoja;
 	char pch;//caracter que conecta con padre
-	trie(): tran(),  idhoja(), padre(), link() {}
+	trie(): next(), tran(),  idhoja(), szhoja(), padre(), link(),nxthoja(),pch() {}
 	void insert(const string &s, int id=1, int p=0){//id>0!!!
 		if(p<sz(s)){
 			trie &ch=next[s[p]];
