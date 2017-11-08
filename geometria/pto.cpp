@@ -20,6 +20,7 @@ struct pto{
 	double norm_sq(){return x*x+y*y;}
 };
 double dist(pto a, pto b){return (b-a).norm();}
+double dist_sq(pto a, pto b){return (b-a).norm_sq();}
 typedef pto vec;
 
 //positivo si aob están en sentido antihorario con un ángulo <180º
