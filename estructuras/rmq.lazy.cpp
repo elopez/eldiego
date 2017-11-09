@@ -60,12 +60,15 @@ struct RMQ{
 	void set(int p, tipo val){//O(lgn)
 		if(p<0) return; //OJO chequear que p no sea muy grande
 		this->get(p,p+1); //para que acomode los dirty del camino de la raíz a p
-		for(p+=sz; p>0 && t[p]!=val;){
+		int a=p, b=p+1, ancho=1;
+		for(p+=sz; p>0 && t[p]!=val; ancho*=2){
 			t[p]=val;
 			int old = p;
+			if(p&1) vecino=p-1, a-=ancho;
+			else vecino=p+1, b+=ancho;
 			p/=2;
-			int vecino = p*2 == old ? p*2+1 : p*2;
-			push(vecino,0,0);
+			//int vecino = p*2 == old ? p*2+1 : p*2;
+			push(vecino,a,b);
 			val=operacion(t[p*2], t[p*2+1]);
 		}
 	}
