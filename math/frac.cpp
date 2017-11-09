@@ -4,9 +4,7 @@ bool comp(tipo a, tipo b, tipo c, tipo d){//a*d < b*c
     if(s2 == 0) return s1 < 0;
     if(s1 > 0 and s2 < 0) return false;
     if(s1 < 0 and s2 > 0) return true;
-    if(a / b != c / d){ //asume que b y d son positivos
-	return a / b < c / d;
-    }
+    if(a / b != c / d) return a/b < c/d; //asume que b y d son positivos
     a %= b, c %= d;
     /*O(1) pero con double:
     long double d1 = ((long double)(a))/(b), d2 = ((long double)(c))/(d);
@@ -15,7 +13,7 @@ bool comp(tipo a, tipo b, tipo c, tipo d){//a*d < b*c
     return comp(d, c, b, a);
 }
 
-tipo mcd(tipo a, tipo b){return a?mcd(b%a, a):b;}
+tipo mcd(tipo a, tipo b){ return a ? mcd(b%a,a) : b; }
 struct frac{
 	tipo p,q;
 	frac(tipo p=0, tipo q=1):p(p),q(q) {norm();}
