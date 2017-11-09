@@ -8,7 +8,8 @@ void dfs(int v, int f){
 		if(!V[*it]){
 			dfs(*it, v);
 			L[v] = min(L[v], L[*it]); //a todo lo que pueden llegar mis hijos yo tmb puede llegar
-			P[v]+= L[*it]>=V[v]; // no puede llegar a ningun vertice u / V[u] < V[v] => si saco v quedan desconectados => v punto de articulacion
+			P[v] += L[*it]>=V[v]; // no puede llegar a ningun vertice u / V[u] < V[v] => si saco v quedan desconectados => v punto de articulacion
+			//con > detecto puentes: P[v] += L[*it] > V[v] (ver pag 131-132 halim)
 		}
 		else if(*it!=f) //backedge 
 			L[v]=min(L[v], V[*it]);
