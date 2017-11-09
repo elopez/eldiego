@@ -9,14 +9,14 @@ struct segm{
 	   else if(t>1.)return f;//not write if is a line
 	   return s+((f-s)*t);
 	}
-    bool inside(pto p){return abs(dist(s, p)+dist(p, f)-dist(s, f))<EPS;}
+	bool inside(pto p){return abs(dist(s, p)+dist(p, f)-dist(s, f))<EPS;}
 };
 
-//NOTA: Si los segmentos son coolineales solo devuelve un punto de interseccion
+//NOTA: Si los segmentos son colineales sólo devuelve un punto de intersección
 pto inter(segm s1, segm s2){
     if(s1.inside(s2.s)) return s2.s; //Fix cuando son colineales
     if(s1.inside(s2.f)) return s2.f; //Fix cuando son colineales
     pto r=inter(line(s1.s, s1.f), line(s2.s, s2.f));
     if(s1.inside(r) && s2.inside(r)) return r;
-	return pto(INF, INF);
+    return pto(INF, INF);
 }
