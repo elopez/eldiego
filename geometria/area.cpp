@@ -6,3 +6,4 @@ double area(vector<pto> &p){//O(sz(p))
 }
 //Area ellipse = M_PI*a*b where a and b are the semi axis lengths
 //Area triangle = sqrt(s*(s-a)(s-b)(s-c)) where s=(a+b+c)/2
+//o mejor area triángulo = abs(x0 * (y1 - y2) + x1 * (y2 - y0) + x2 * (y0 - y1)) / 2;
