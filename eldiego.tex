@@ -418,6 +418,7 @@ srand(time(NULL));
 \subsection*{Doubles Comp.}
 \begin{code}
 const double EPS = 1e-9;
+#define feq(a, b) (fabs((a)-(b))<EPS)
 x == y	<=> fabs(x-y) < EPS
 x >  y	<=> x > y + EPS
 x >= y	<=> x > y - EPS
