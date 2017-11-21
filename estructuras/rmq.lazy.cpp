@@ -17,11 +17,11 @@ struct RMQ{
 	void updall(){//O(n)
 		dforn(i, sz) t[i]=operacion(t[2*i], t[2*i+1]);}
 	void opAltT(int n,int a,int b){//altera el valor del nodo n segun su dirty y el intervalo que le corresponde.
-			t[n] += dirty[n]*(b-a); //en este caso la alteracion seria sumarle a todos los elementos del intervalo [a,b) el valor dirty[n]
-		}
+		t[n] += dirty[n]*(b-a);
+	} //en este caso la alteracion seria sumarle a todos los elementos del intervalo [a,b) el valor dirty[n]
 	void opAltD(int n ,Alt val){
-		dirty[n]+= val;
-		}//actualiza el valor de Dirty "sumandole" val. podria cambiar el valor de dirty dependiendo de la operacion que se quiera al actualizar un rango. Ej:11402.cpp
+		dirty[n] += val;
+	}//actualiza el valor de Dirty "sumandole" val. podria cambiar el valor de dirty dependiendo de la operacion que se quiera al actualizar un rango. Ej:11402.cpp
 	void push(int n, int a, int b){//propaga el dirty a sus hijos
 		if(dirty[n]!=neutro2){
 			//t[n]+=dirty[n]*(b-a);//altera el nodo 
@@ -63,7 +63,6 @@ struct RMQ{
 		int a=p, b=p+1, ancho=1, vecino;
 		for(p+=sz; p>0 && t[p]!=val; ancho*=2){
 			t[p]=val;
-			int old = p;
 			if(p&1){ vecino=p-1; push(vecino,a,b); a-=ancho; }
 			else{ vecino=p+1; push(vecino,a,b); b+=ancho; }
 			p/=2;
