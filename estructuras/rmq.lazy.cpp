@@ -24,8 +24,7 @@ struct RMQ{
 	}//actualiza el valor de Dirty "sumandole" val. podria cambiar el valor de dirty dependiendo de la operacion que se quiera al actualizar un rango. Ej:11402.cpp
 	void push(int n, int a, int b){//propaga el dirty a sus hijos
 		if(dirty[n]!=neutro2){
-			//t[n]+=dirty[n]*(b-a);//altera el nodo 
-			opAltT(n,a,b); 
+			opAltT(n,a,b); //t[n]+=dirty[n]*(b-a);//altera el nodo 
 			if(n<sz){
 				opAltD(2*n,dirty[n]);//dirty[2*n]+=dirty[n];
 				opAltD(2*n+1,dirty[n]);//dirty[2*n+1]+=dirty[n];
@@ -46,8 +45,8 @@ struct RMQ{
 		push(n, a, b);
 		if(j<=a || i>=b) return;
 		if(i<=a && b<=j){
-			opAltD(n ,val);//actualiza el valor de Dirty por val.
-			push(n, a, b);
+			opAltD(n,val);//actualiza el valor de Dirty por val.
+			push(n,a,b);
 			return;//este nodo esta totalmente contenido por el intervalo a alterar, no es necesario que se lo pases a los hijos.. por ahora..
 		}
 		int c=(a+b)/2;
@@ -57,7 +56,7 @@ struct RMQ{
 	void alterar(Alt val, int i, int j){alterar(val,i,j,1,0,sz);}
 	
 	//setea de a un elemento. Esto lo "hace" dinámico.
-	void set(int p, tipo val){//O(lgn)
+	void set(int p, Elem val){//O(lgn)
 		if(p<0) return; //OJO chequear que p no sea muy grande
 		this->get(p,p+1); //para que acomode los dirty del camino de la raíz a p
 		int a=p, b=p+1, ancho=1, vecino;
