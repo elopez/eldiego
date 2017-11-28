@@ -56,22 +56,22 @@ set<int> C[2*MAXN];
 int compnodo[MAXN];
 int ptoart;
 void blockcuttree(){
-	ptoart = 0;
-	forn(i,2*MAXN) C[i].clear();
+    ptoart = 0; zero(compnodo);
+    forn(i,2*MAXN) C[i].clear();
     for(auto &it: e){
-		int u = it.u, v = it.v;
-		if(comp[u] == 1) compnodo[u] = it.comp;
+        int u = it.u, v = it.v;
+        if(comp[u] == 1) compnodo[u] = it.comp;
         else{
-			if(compnodo[u] == 0){ compnodo[u] = nbc+ptoart; ptoart++;}
-			C[it.comp].insert(compnodo[u]);
-			C[compnodo[u]].insert(it.comp);
-		}
-		if(comp[v] == 1) compnodo[v] = it.comp;
+            if(compnodo[u] == 0){ compnodo[u] = nbc+ptoart; ptoart++;}
+                C[it.comp].insert(compnodo[u]);
+                C[compnodo[u]].insert(it.comp);
+        }
+        if(comp[v] == 1) compnodo[v] = it.comp;
         else{
-			if(compnodo[v] == 0){ compnodo[v] = nbc+ptoart; ptoart++;}
-			C[it.comp].insert(compnodo[v]);
-			C[compnodo[v]].insert(it.comp);
-		}
+            if(compnodo[v] == 0){ compnodo[v] = nbc+ptoart; ptoart++;}
+                C[it.comp].insert(compnodo[v]);
+                C[compnodo[v]].insert(it.comp);
+        }
     }
 }    
 
