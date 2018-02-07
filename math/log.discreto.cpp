@@ -1,21 +1,25 @@
+// !!! TESTEAR !!!
 //Baby step - giant step.
 //Returns x such that a^x = b mod MOD. O(sqrt(MOD)*log(sqrt(MOD))).
+
+#define mod(x) (((x)%MOD+MOD)%MOD)
+
 ll discrete_log(ll a, ll b, ll MOD)
 {
-	ll m = min(MOD, (ll)sqrt(MOD)+5); // m >= ceil(sqrt(MOD))
+	a = mod(a); b = mod(b);
 	unordered_map<ll,ll> T;
+	ll m = min(MOD, (ll)sqrt(MOD)+5); // m >= ceil(sqrt(MOD))
 
 	ll now = 1;
 	forn(j,m){
 		if(T.find(now) == T.end()) T[now] = j;
-		now = (now*a)%MOD;
+		now = mod(now*a);
 	}
 	
 	ll inv = inverso(now,MOD); // = a^-m
-	b %= MOD;
 	forn(i,m){
 		if(T.find(b) != T.end()) return i*m + T[b]; //found!
-		b = (b*inv)%MOD;
+		b = mod(b*inv);
 	}
 	
 	return -1; //not found
