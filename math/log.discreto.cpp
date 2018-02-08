@@ -24,3 +24,24 @@ ll discrete_log(ll a, ll b, ll MOD)
 	
 	return -1; //not found
 }
+
+//con mnum
+ll discrete_log(mnum a, mnum b)
+{
+	unordered_map<ll,ll> T;
+	ll m = min(MOD, (ll)sqrt(MOD)+5); // m >= ceil(sqrt(MOD))
+
+	mnum now = 1;
+	forn(j,m){
+		if(T.find(now.v) == T.end()) T[now.v] = j;
+		now = now*a;
+	}
+	
+	mnum inv = inverso(now.v,MOD); // = a^-m
+	forn(i,m){
+		if(T.find(b.v) != T.end()) return i*m + T[b.v]; //found!
+		b = b*inv;
+	}
+	
+	return -1; //not found
+}
