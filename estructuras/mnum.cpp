@@ -21,7 +21,7 @@ struct mnum{
 	mnum operator^(ll n){
 		if(!n) return 1;
 		return n%2 ? ((*this)^(n/2))*(*this) : (*this)^(n/2);}
-	mnum operator/(ll n){assert(n!=0); return v*inverso(n);} //OJO! MOD tiene que ser primo! Sino no siempre existe inverso
+	mnum operator/(ll n){assert(n!=0); return inverso(n)*v;} //OJO! MOD tiene que ser primo! Sino no siempre existe inverso
 	
 	mnum inverso(int x){//O(log x)
 		//return x^(eulerphi(MOD)-1); //si mod no es primo (sacar a mano) PROBAR! Ver si rta*x == 1 modulo MOD
