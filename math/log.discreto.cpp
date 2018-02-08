@@ -12,7 +12,7 @@ ll discrete_log(ll a, ll b, ll MOD)
 
 	ll now = 1;
 	forn(j,m){
-		if(T.find(now) == T.end()) T[now] = j;
+		if(T.find(now) == T.end()) T[now] = j; //con este if da el primer x, si se saca el if sigue andando pero puede no devolver el primer x tal que a^x=b
 		now = mod(now*a);
 	}
 	
@@ -33,7 +33,7 @@ ll discrete_log(mnum a, mnum b)
 
 	mnum now = 1;
 	forn(j,m){
-		if(T.find(now.v) == T.end()) T[now.v] = j;
+		if(T.find(now.v) == T.end()) T[now.v] = j; //con este if da el primer x, si se saca el if sigue andando pero puede no devolver el primer x tal que a^x=b
 		now = now*a;
 	}
 	
