@@ -13,7 +13,7 @@ ll mul(ll a, ll b, ll m) { //hace (a*b)%m
 struct mnum{
 	static const tipo mod=MOD;
 	tipo v;
-	mnum(tipo v=0): v(((v%mod)+mod)%mod) {}
+	mnum(tipo v=0): v((v%mod+mod)%mod) {}
 	mnum operator+(mnum b){return v+b.v;}
 	mnum operator-(mnum b){return v-b.v;}
 	//mnum operator*(mnum b){return v*b.v;} //Si mod<=1e9+9
