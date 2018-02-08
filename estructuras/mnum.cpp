@@ -22,11 +22,11 @@ struct mnum{
 		if(!n) return 1;
 		mnum q = (*this)^(n/2);
 		return n%2 ? q*q*v : q*q;}
-	mnum operator/(mnum n){return ~n*v;} //O(log n) //OJO! MOD tiene que ser primo! Sino no siempre existe inverso
+	mnum operator/(mnum n){return ~n*v;} //O(log n) //OJO! mod tiene que ser primo! Sino no siempre existe inverso
 	
-	mnum operator~(){ //inverso, O(log v)
+	mnum operator~(){ //inverso, O(log mod)
 		assert(v!=0);
-		//return (*this)^(eulerphi(MOD)-1); //si mod no es primo (sacar a mano) PROBAR! Ver si rta*x == 1 modulo MOD
+		//return (*this)^(eulerphi(mod)-1); //si mod no es primo (sacar a mano) PROBAR! Ver si rta*x == 1 modulo mod
 		return (*this)^(mod-2);//si mod es primo
 	}
 };
