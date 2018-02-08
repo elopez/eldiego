@@ -18,14 +18,15 @@ struct mnum{
 	mnum operator-(mnum b){return v-b.v;}
 	//mnum operator*(mnum b){return v*b.v;} //Si mod<=1e9+9
 	mnum operator*(mnum b){return mul(v,b.v,mod);} //Si mod<=1e18+9
-	mnum operator^(ll n){
+	mnum operator^(ll n){ //O(log n)
 		if(!n) return 1;
 		return n%2 ? ((*this)^(n/2))*(*this) : (*this)^(n/2);}
-	mnum operator/(ll n){assert(n!=0); return inverso(n)*v;} //OJO! MOD tiene que ser primo! Sino no siempre existe inverso
+	mnum operator/(mnum n){return n.inverso()*v;} //O(log n) //OJO! MOD tiene que ser primo! Sino no siempre existe inverso
 	
-	mnum inverso(int x){//O(log x)
-		//return x^(eulerphi(MOD)-1); //si mod no es primo (sacar a mano) PROBAR! Ver si rta*x == 1 modulo MOD
-		return x^(MOD-2);//si mod es primo
+	mnum inverso(){//O(log v)
+		assert(v!=0);
+		//return v^(eulerphi(MOD)-1); //si mod no es primo (sacar a mano) PROBAR! Ver si rta*x == 1 modulo MOD
+		return v^(MOD-2);//si mod es primo
 	}
 };
 
