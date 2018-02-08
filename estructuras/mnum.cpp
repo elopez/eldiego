@@ -2,6 +2,12 @@
 #define MOD 1000000000000000009LL
 #define PRIME 1009LL
 
+mnum inv[MAXMOD];//inv[i]*i=1 mod MOD
+void calc(int p){//calcula inversos de 1 a p en O(p)
+	inv[1]=1;
+	forr(i, 2, p) inv[i] = p - (p/i)*inv[p%i];
+}
+
 ll mul(ll a, ll b, ll m) { //hace (a*b)%m
 	ll q = (ll)((long double)a*b/m);
 	ll r = a*b-m*q;
@@ -21,7 +27,8 @@ struct mnum{
 	mnum operator^(ll n){ //O(log n)
 		if(!n) return 1;
 		mnum q = (*this)^(n/2);
-		return n%2 ? q*q*v : q*q;}
+		return n%2 ? q*q*v : q*q;
+	}
 	mnum operator/(mnum n){return ~n*v;} //O(log n) //OJO! mod tiene que ser primo! Sino no siempre existe inverso
 	
 	mnum operator~(){ //inverso, O(log mod)
