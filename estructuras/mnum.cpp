@@ -18,9 +18,10 @@ struct mnum{
 	mnum operator-(mnum b){return v-b.v;}
 	//mnum operator*(mnum b){return v*b.v;} //Si mod<=1e9+9
 	mnum operator*(mnum b){return mul(v,b.v,mod);} //Si mod<=1e18+9
-	mnum operator^(int n){
+	mnum operator^(ll n){
 		if(!n) return 1;
 		return n%2 ? ((*this)^(n/2))*(*this) : (*this)^(n/2);}
+	mnum operator/(ll n){assert(n!=0); return v*inverso(n);} //OJO! MOD tiene que ser primo! Sino no siempre existe inverso
 };
 
 /*
