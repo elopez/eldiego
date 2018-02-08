@@ -7,7 +7,7 @@ ll mul(ll a, ll b, ll m) { //hace (a*b)%m
 	ll r = a*b-m*q;
 	while(r<0) r += m;
 	while(r>=m) r -= m;
-	return r;	
+	return r;
 }
 
 struct mnum{
@@ -22,6 +22,11 @@ struct mnum{
 		if(!n) return 1;
 		return n%2 ? ((*this)^(n/2))*(*this) : (*this)^(n/2);}
 	mnum operator/(ll n){assert(n!=0); return v*inverso(n);} //OJO! MOD tiene que ser primo! Sino no siempre existe inverso
+	
+	mnum inverso(int x){//O(log x)
+		//return x^(eulerphi(MOD)-1); //si mod no es primo (sacar a mano) PROBAR! Ver si rta*x == 1 modulo MOD
+		return x^(MOD-2);//si mod es primo
+	}
 };
 
 /*
@@ -32,11 +37,8 @@ Por ejemplo, si n=7, y=2, o sea que quiero dividir por y,
 y^-1 = 4 porque y*(y^-1) = 8 = 1 mod 7.
 */
 
-//ejemplos de primo y mod=1e9+9 con inverso multiplicativo INV. x/PRIME = x*INV.
 #define MOD 1000000009LL
 #define PRIME 1009LL
-#define INV 598612493LL
 
 #define MOD 100000000003LL
 #define PRIME 1009LL
-#define INV 53815659070LL
