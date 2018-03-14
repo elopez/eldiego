@@ -1,6 +1,5 @@
 //checks if v is inside of P, using ray casting
 //works with convex and concave.
-//includes boundaries, handled separately using segment.inside()
 bool inPolygon(pto v, vector<pto>& P) {
 	bool c = false;
 	forn(i, sz(P)){
