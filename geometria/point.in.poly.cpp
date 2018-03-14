@@ -6,11 +6,11 @@ bool inPolygon(pto v, vector<pto>& P) {
 	forn(i, sz(P)){
 		int j=(i+1)%sz(P);
 		
-		//incluye bordes !!!
-		segm lado(P[i],P[j]); if(lado.inside(v)) return true;
+		segm lado(P[i],P[j]);
+		if(lado.inside(v)) return true; //OJO: return true: incluye lados. return false: excluye lados.
 		
-		if((P[j].y>v.y) != (P[i].y > v.y) &&
-	(v.x < (P[i].x - P[j].x) * (v.y-P[j].y) / (P[i].y - P[j].y) + P[j].x))
+		if((P[j].y > v.y) != (P[i].y > v.y) &&
+		(v.x < (P[i].x-P[j].x) * (v.y-P[j].y) / (P[i].y-P[j].y) + P[j].x))
 			c = !c;
 	}
 	return c;
