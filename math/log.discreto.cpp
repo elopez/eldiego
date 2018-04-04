@@ -2,6 +2,10 @@
 //Baby step - giant step.
 //Returns x such that a^x = b mod MOD. O(sqrt(MOD)*log(sqrt(MOD))).
 
+// IDEA: a^x=b mod MOD <=> x = i*sqrt(MOD)+j con i,j <= sqrt(MOD)=m
+// entonces guardo todos los a^j: T[a^j mod MOD]=j
+// y después busco si vi T[b/(a^(i*m) mod MOD] = T[b*a^-(i*m) mod MOD], return j+i*m
+
 #define mod(x) (((x)%MOD+MOD)%MOD)
 
 ll discrete_log(ll a, ll b, ll MOD)
