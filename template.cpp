@@ -11,14 +11,7 @@ typedef long long ll;
 typedef pair<ll,ll> pll;
 #define dforn(i,n) for(int i=n-1; i>=0; i--)
 
-ll n;
-
 int main() {
     ios::sync_with_stdio(0); cin.tie(0);
-    
-    while(cin >> n){
-    
-    }
-    
     return 0;
 }
