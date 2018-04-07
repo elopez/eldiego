@@ -1,4 +1,4 @@
-all: eldiego.pdf
+all: eldiego.pdf eldiegoWF.pdf
 
 AUX_EXTS:= aux|nav|snm|log|toc|vrb|dvi|idx|fdb_latexmk|fls|out|ilg|ind
 
