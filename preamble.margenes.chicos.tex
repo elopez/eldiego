@@ -1,10 +1,7 @@
 \documentclass[10pt,landscape,twocolumn,a4paper,notitlepage]{article}
 \usepackage[hidelinks]{hyperref}
 \usepackage[spanish, activeacute]{babel}
-% \usepackage[utf8]{inputenc}
-\usepackage{fontspec} % a ver si andan los tildes
-
-\usepackage{fancyhdr}
+\usepackage{fontspec}
 \usepackage{lastpage}
 \usepackage{listings}
 \usepackage{amssymb}
@@ -20,16 +17,16 @@
 
 %%% Espacio de los titulos
 \usepackage{titlesec} 
-\titleformat{\section} {\normalfont\Large\bfseries\centering}{\thesection}{1em}{}
-\titleformat{\subsection} {\normalfont\large\bfseries\centering}{\thesubsection}{1em}{}
+\titleformat{\section}{\normalfont\Large\bfseries\centering}{}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\centering}{}{1em}{}
 \titlespacing*{\subsection}{0pt}{0pt}{0pt} % interespacio de las subsecciones
   
 %%% Margenes
 \setlength{\columnsep}{0.0in}    % default=10pt
 \setlength{\columnseprule}{0.0pt}    % default=0pt (no line)
  
-\addtolength{\textheight}{2.9in}
-\addtolength{\topmargin}{-1.2in}     % ~ -0.5 del incremento anterior
+\addtolength{\textheight}{3in}
+\addtolength{\voffset}{-1.3in}     % ~ -0.5 del incremento anterior
  
 \addtolength{\textwidth}{1.8in}
 \addtolength{\oddsidemargin}{-0.9in} % -0.5 del incremento anterior
@@ -40,12 +37,15 @@
 \setlength{\parindent}{0mm}
  
 %%% Encabezado y pie de pagina
-\pagestyle{fancy}
-\fancyhead[LO]{\textbf{\title}}
-\fancyhead[C]{\leftmark\ -\ \rightmark}
-\fancyhead[RO]{P\'agina \thepage\ de \pageref{LastPage}}
-\renewcommand{\headrulewidth}{0.4pt}
-\fancyfoot{}
+\usepackage{titleps}
+\newpagestyle{main}[\small]{
+  \setheadrule{.4pt}%
+  \sethead{\normalfont\textbf{\title}}%
+          {\normalfont\MakeUppercase{\sectiontitle}\ -\ \subsectiontitle}%
+          {\normalfont{Página \thepage\ de \pageref{LastPage}}}%
+}
+\pagestyle{main}
+
 \definecolor{darkblue}{rgb}{0,0,0.4}
 %%% Configuracion de Listings
 \lstloadlanguages{C++}
