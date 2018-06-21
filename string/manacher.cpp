@@ -20,7 +20,7 @@ int d2[MAXN];//d2[i]=analogo pero para longitud par
 //0 1 2 3 4
 //a a b c c <--d1[2]=3
 //a a b b <--d2[2]=2 (estan uno antes)
-void manacher(){
+void manacher(){ //Longest palindromic substring in O(n)
 	int l=0, r=-1, n=sz(s);
 	forn(i, n){
 		int k=(i>r? 1 : min(d1[l+r-i], r-i));
