@@ -42,7 +42,7 @@ struct RMQ{
 	Elem get(int i, int j){return get(i,j,1,0,sz);}
 	//altera los valores en [i, j) con una alteracion de val
 	void alterar(Alt val, int i, int j, int n, int a, int b){//O(lgn)
-		push(n, a, b);
+		push(n, a, b); //si el push es muy caro, esta linea se podría pasar después de los ifs.
 		if(j<=a || i>=b) return;
 		if(i<=a && b<=j){
 			opAltD(n,val);//actualiza el valor de Dirty por val.
