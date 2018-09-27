@@ -127,7 +127,8 @@ Dado un arreglo y una operacion asociativa \emph{idempotente}, get(i, j) opera s
 \cppfile{geometria/rotate.cpp}
 \subsection{Interseccion de Circulos en n3log(n)}
 \cppfile{geometria/int.circs.cpp}
-
+\subsection{Punto más lejano en una dirección}
+\cppfile{geometria/pto.mas.lejano.cpp}
 
 \section{Math}%%%%%%%%%%%%%%%%%%MATH%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Identidades}
@@ -484,4 +485,12 @@ for(int sbm=bm; sbm; sbm=(sbm-1)&bm)
 //tambien se pueden usar comas: {a, x, m, l}
 touch {a..l}.in; tee {a..l}.cpp < template.cpp
 \end{code}
+
+\subsection*{Pragma}
+\begin{code}
+#pragma GCC optimize("Ofast")
+#pragma GCC optimize ("unroll-loops")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")\end{code}
+
+
 \end{document}
