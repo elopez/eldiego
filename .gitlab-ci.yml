@@ -1,0 +1,19 @@
+image: janwh/latex
+
+stages:
+  - build
+
+pdfs:
+  stage: build
+  script:
+    - mkdir _build
+    - xelatex -interaction=nonstopmode -halt-on-error -output-directory _build eldiego.tex
+    - xelatex -interaction=nonstopmode -halt-on-error -output-directory _build eldiego.tex
+    - xelatex -interaction=nonstopmode -halt-on-error -output-directory _build eldiego.tex
+    - xelatex -interaction=nonstopmode -halt-on-error -output-directory _build eldiegoWF.tex
+    - xelatex -interaction=nonstopmode -halt-on-error -output-directory _build eldiegoWF.tex
+    - xelatex -interaction=nonstopmode -halt-on-error -output-directory _build eldiegoWF.tex
+  artifacts:
+    paths:
+      - _build/eldiego.pdf
+      - _build/eldiegoWF.pdf
