@@ -10,7 +10,10 @@ void dfs(int v, int fa=-1, int lvl=0){//generate required data
 		dfs(*it, v, lvl+1);
 }
 void build(int N){//f[i][0] must be filled previously, O(nlgn)
-	forn(k, LOGN-1) forn(i, N) if(f[i][k] != -1) f[i][k+1]=f[f[i][k]][k];}
+	forn(k, LOGN-1) forn(i, N) 
+		if(f[i][k] != -1) f[i][k+1]=f[f[i][k]][k];
+		else f[i][k+1] = -1;
+}
 	
 #define lg(x) (31-__builtin_clz(x))//=floor(log2(x))
 
