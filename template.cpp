@@ -10,6 +10,7 @@ using namespace std;
 typedef long long ll;
 typedef pair<ll,ll> pll;
 #define dforn(i,n) for(int i=n-1; i>=0; i--)
+#define sz(x) ((int)((x).size()))
 
 int main() {
     ios::sync_with_stdio(0); cin.tie(0);
