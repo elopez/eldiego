@@ -5,7 +5,7 @@ void mul(double a[SIZE][SIZE], double b[SIZE][SIZE]){ zero(tmp);
     forn(i, NN) forn(j, NN) forn(k, NN) tmp[i][j]+=a[i][k]*b[k][j];
     forn(i, NN) forn(j, NN) a[i][j]=tmp[i][j];
 }
-void powmat(double a[SIZE][SIZE], int n, double res[SIZE][SIZE]){
+void powmat(double a[SIZE][SIZE], ll n, double res[SIZE][SIZE]){
     forn(i, NN) forn(j, NN) res[i][j]=(i==j);
     while(n){
         if(n&1) mul(res, a), n--;
