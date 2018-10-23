@@ -18,7 +18,7 @@ struct pto{
 	bool left(pto q, pto r){return ((q-*this)^(r-*this))>0;}
 	bool operator<(const pto &a) const{return x<a.x-EPS || (abs(x-a.x)<EPS && y<a.y-EPS);}
 	bool operator==(pto a){return abs(x-a.x)<EPS && abs(y-a.y)<EPS;}
-	double norm(){return sqrt(x*x+y*y);}
+	double norm(){return hypot(x,y);}
 	tipo norm_sq(){return x*x+y*y;}
 };
 double dist(pto a, pto b){return (b-a).norm();}
