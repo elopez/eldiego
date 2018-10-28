@@ -1,37 +1,41 @@
-convex hull 1: dp[i] = min{dp[j] + b[j] * a[i]}, j < i. Si se cumple b[j] >= b[j+1] y a[i] <= a[i+1] entonces pasa de O(n^2) a O(n) sino pasa a O(nlogn)
+Convex Hull 1: dp[i] = min{dp[j] + b[j] * a[i]}, j < i. Si se cumple b[j] >= b[j+1] y a[i] <= a[i+1] entonces pasa de O(n^2) a O(n) sino pasa a O(nlogn)
+
+Convex Hull 2: dp[i][j] = min{dp[i-1][k] + b[k] * a[j]}, k < j. Si se cumple b[k] >= b[k+1] y a[j] <= a[j+1] entonces pasa de O(kn^2) a O(kn) sino pasa O(knlogn)
 
 
-convex hull 2: dp[i][j] = min{dp[i-1][k] + b[k] * a[j]}, k < j. Si se cumple b[k] >= b[k+1] y a[j] <= a[j+1] entonces pasa de O(kn^2) a O(kn) sino pasa O(knlogn)
-
-
-divide and conquer: dp[i][j] = min{dp[i-1][k] + C[k+1][j]}, k < j. Se debe cumplir: A[i][j] <= A[i][j+1]. Pasa de O(kn^2) a O(knlogn)
-Donde A[i][j] es el minimo k tal que dp[i][j] = dp[i-1][k] + C[k][j]
+Divide and Conquer: dp[k][i] = min{dp[k-1][j] + C[j][i]}, j < i. Se debe cumplir: A[k][i] <= A[k][i+1]. Pasa de O(kn^2) a O(knlogn)
+Donde A[k][i] es el minimo j tal que dp[k][i] = dp[k-1][j] + C[j][i]
 Tambien es aplicable si:
 C[a][c] + C[b][d] <= C[a][d] + C[b][c] y C[b][c] <= C[a][d], a<=b<=c<=d 
 
-def ComputeDP(i, jleft, jright, kleft, kright):
-  # Select the middle point
-  jmid = (jleft + jright) / 2
-  # Compute the value of dp[i][jmid] by definition of DP
-  dp[i][jmid] = +INFINITY
-  bestk = -1
-  for k in range[kleft, jmid):
-	if dp[i - 1][k] + C[k + 1][jmid] < best:
-	  dp[i][jmid] = dp[i - 1][k] + C[k + 1][jmid]
-	  bestk = k
-  # Divide and conquer
-  if jleft < jmid:
-	ComputeDP(i, jleft, jmid, kleft, bestk)
-  if jmid + 1 < jright:
-	ComputeDP(i, jmid + 1, jright, bestk, kright)
- 
-def ComputeFullDP:
-  Initialize dp for i = 0 somehow
-  for i in range(1, m):
-	ComputeDP(i, 0, n, 0, n)
+// O(knlogn). For 2D dps, when the position of optimal choice is non-decreasing as the second variable increases
+int k,n,f[MAXN],f2[MAXN];
+//f2[m] guarda el valor de la dp para [0,m) con k == i
+//f[m] guarda el valor de la dp para [0,m) con k == i-1
+
+void doit(int s, int e, int s0, int e0, int i){
+	// [s,e): range of calculation, [s0,e0): range of optimal choice
+	if(s==e)return;
+	int m=(s+e)/2,r=INF,rp=-1;
+	forr(j,s0,min(e0,m)){
+		int r0 = f[j] + something(i,j); // "something" usually depends on f
+		if(r0<r){
+			r = r0;
+			rp = j; // position of optimal choice
+		}
+	}
+	f2[m] = r;
+	doit(s,m,s0,rp+1,i);
+	doit(m+1,e,rp,e0,i);
+}
+int doall(){
+	init_base_cases(); // k == 0
+	forr(i,1,k)doit(1,n+1,0,n,i),memcpy(f,f2,sizeof(f));
+	return f[n];
+}
 
 
-knuth: dp[i][j] = min{dp[i][k] + dp[k][j]} + C[i][j], i < k < j. Se debe cumplir: A[i, j - 1] <= A[i, j] <= A[i + 1, j]. Pasa de O(n^3) a O(n^2)
+Knuth: dp[i][j] = min{dp[i][k] + dp[k][j]} + C[i][j], i < k < j. Se debe cumplir: A[i, j - 1] <= A[i, j] <= A[i + 1, j]. Pasa de O(n^3) a O(n^2)
 Donde A[i][j] es el minimo k tal que dp[i][j] = dp[i][k] + dp[k][j] + C[i][j]
 Tambien es aplicable si:
 C[a][c] + C[b][d] <= C[a][d] + C[b][c] y C[b][c] <= C[a][d], a<=b<=c<=d 
@@ -55,4 +59,4 @@ for (int s = 0; s<=k; s++)
 		}
 	  }
 	}
-  
+ 
