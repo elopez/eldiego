@@ -26,7 +26,7 @@ typedef vector<Vec> Mat;
 #define eps 1e-10
 #define feq(a, b) (fabs((a)-(b))<eps)
 
-bool resolver_ev(Mat a, Vec y, Vec &x, Mat &ev){
+bool resolver_ev(Mat a, Vec y, Vec &x, Mat &ev){ //devuelve false si no existe solucion
 	int n = a.size(), m = n?a[0].size():0, rw = min(n, m);
 	vector<int> p; forn(i,m) p.push_back(i);
 	forn(i, rw) {
@@ -41,7 +41,10 @@ bool resolver_ev(Mat a, Vec y, Vec &x, Mat &ev){
 			forr(k, i, m) a[j][k]-=v * a[i][k];
 			y[j] -= v*y[i];
 		}
-	} // rw = rango(a), aca la matriz esta triangulada
+	} // rw = rango(a) (== cantidad de filas no nulas de la matriz aca ==
+	// cantidad de ecuaciones linealmente independientes. 
+	//Si es menor que la cantidad de variables entonces hay infinitas soluciones.)
+	// aca la matriz esta triangulada (y ningun elemento de la diagonal es nulo)
 	forr(i, rw, n) if (!feq(y[i],0)) return false; // checkeo de compatibilidad
 	x = vector<tipo>(m, 0);
 	dforn(i, rw){
