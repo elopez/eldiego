@@ -35,7 +35,8 @@ struct trie{
 		if(!tran[c]) tran[c] = !padre? this : this->get_link()->get_tran(c);
 		return tran[c];	}
 	trie *get_nxthoja(){
-		if(!nxthoja) nxthoja = get_link()->idhoja? link : link->nxthoja;
+		if(!nxthoja) 
+			nxthoja = get_link()->idhoja? link : (link == this ? nxthoja : link->get_nxthoja());
 		return nxthoja;	}
 	void print(int p){
 		if(idhoja) cout << "found " << idhoja << "  at position " << p-szhoja << endl;
