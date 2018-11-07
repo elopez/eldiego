@@ -11,11 +11,16 @@ using namespace std;
 #define fst first
 #define snd second
 typedef long long ll;
-typedef pair<int,int> ii;
+typedef pair<ll,ll> pll;
 
-//Compilar: g++ --std=c++11
+//unordered_map más rápido.
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+gp_hash_table<ll,ll> table; //se le puede pasar <ll,ll,Hash> también
+
+//Hasheos para pares y para vectores.
 struct Hash{
-	size_t operator()(const ii &a)const{
+	size_t operator()(const pll &a)const{
 		size_t s=hash<int>()(a.fst);
 		return hash<int>()(a.snd)+0x9e3779b9+(s<<6)+(s>>2);
 	}
@@ -26,15 +31,15 @@ struct Hash{
 		return s;
 	}
 };
-unordered_set<ii, Hash> s;
-unordered_map<ii, int, Hash> m;//map<key, value, hasher>
+unordered_set<pll, Hash> s;
+unordered_map<pll, ll, Hash> m;//map<key, value, hasher>
 
 int main() {
     srand(time(NULL));
 	set<size_t> coli;
     forn(i, 1000000){
-		s.insert(ii(rand()%10000, rand()%10000));
-		coli.insert(Hash()(ii(rand()%10000, rand()%10000)));
+		s.insert(pll(rand()%10000, rand()%10000));
+		coli.insert(Hash()(pll(rand()%10000, rand()%10000)));
     }
     dprint(sz(coli));
 	return 0;
