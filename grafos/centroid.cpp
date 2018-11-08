@@ -76,13 +76,25 @@ int lca(int a, int b){//O(lgn)
 int dist(int a, int b) {
 	return L[a]+L[b]-2*L[lca(a, b)];}
 	
-	
+/*
+Propiedades del arbol de centroides: 	
+* Contiene a todos los nodos
+* Tiene altura O(logn)
+* Cada camino en el arbol original se descompone en dos caminos hasta el LCA
+(El camino entre A y B en el arbol original se puede descomponer en A-->C y B-->C
+donde C es el LCA de A y B en el arbol de centroides) 
+* por lo tanto, descomponemos al arbol original en O(Nlogn) caminos diferentes 
+(desde cada centroide a todos los vertices en su parte correspondiente) de forma
+tal que que cualquier camino es la concatenacion de dos de estos caminos.
+
+Esto tambien se puede usar asi:
+*/
 int dstsub[MAXN];
-void update(int v, int org){
+void update(int v, int org){ //agrega org como "nodo especial"
 	dstsub[v]=min(dstsub[v], dist(v, org));
 	if(padre[v]!=-1) update(padre[v], org);
 }
-int query(int v, int org){
+int query(int v, int org){ //busca la menor distancia desde org a un "nodo especial"
 	if(padre[v]==-1) return dstsub[v]+dist(v, org);
 	return min(dstsub[v]+dist(v, org), query(padre[v], org));
 }
